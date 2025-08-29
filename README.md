@@ -1,4 +1,4 @@
-# The Modern JavaScript Course — Repository
+# The Modern JavaScript 
 
 Welcome to the **Modern JavaScript Course Repository**, a professional and comprehensive resource designed to take you from **beginner to expert** in JavaScript. This repository is built around real-world projects, hands-on challenges, and in-depth theory to help learners truly master the language.
 
