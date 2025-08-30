@@ -1,3 +1,4 @@
+
 let js = "Amazing";  // Declare a string variable 'js' and assign it the value "Amazing"
 console.log(40 + 8 + 23 - 10);  // Output the result of the arithmetic expression
 console.log("Saeed");  // Output the string "Saeed"
@@ -9,8 +10,8 @@ console.log(firstName);  // Output the value of 'firstName'
 let myFirstJob = "Programmer";  // Declare a string variable 'myFirstJob' and assign it the value "Programmer"
 let my_current_job = "Teacher";  // Declare a string variable 'my_current_job' and assign it the value "Teacher"
 
-// [X] let jop1 = "Programmer";  // Incorrect variable name (typo), should be 'job1' or 'myFirstJob'
-// [X] let jop2 = "Teacher";  // Incorrect variable name (typo), should be 'job2' or 'my_current_job'
+// [X] let jop1 = "Programmer";  // Incorrect variable name (typo), should be 'myFirstJob'
+// [X] let jop2 = "Teacher";  // Incorrect variable name (typo), should be  'myCurrentJob'
 
 console.log(myFirstJob);  // Output the value of 'myFirstJob'
 
