@@ -58,3 +58,45 @@ console.log(2 + 3 + 4 + "5");
 
 console.log("10" - "4" - "3" - 2 + "5"); 
 // 👉 "10" - "4" = 6 → 6 - "3" = 3 → 3 - 2 = 1 → 1 + "5" = "15"
+
+
+// =====================================================================
+// 📌 5 fasly value: 0, '', undfined, null, NaN
+// =====================================================================
+
+console.log(Boolean(0));
+// 👉 0 is falsy → false
+
+console.log(Boolean(undefined));
+// 👉 undefined is falsy → false
+
+console.log(Boolean("Jonas"));
+// 👉 "Jonas" is truthy → true
+
+console.log(Boolean({}));
+// 👉 empty object is truthy → true
+
+console.log(Boolean(""));
+// 👉 empty string is falsy → false
+
+
+const money = 0;
+
+if (money) {
+  console.log("Don't spend it all");
+} else {
+  console.log("You should get a job");
+} 
+
+// 👉 0 is falsy, so "You should get a job" is printed
+
+
+let height;
+
+if (height) {
+  console.log("YAY! Height is defined");
+} else {
+  console.log("Height is UNDEFINED");
+}
+
+
