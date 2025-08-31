@@ -1,7 +1,7 @@
 /* CHALLENGE #1: BMI Calculator
    Formula: BMI = mass / (height * height)
    Author: Mohamed Saeed
-   Date: 2023-09-15
+   Date: 2025-8-30
    --------------------------------------
    Compare Mark's and John's BMI values.
 */
