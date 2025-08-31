@@ -1,5 +1,5 @@
 /* ============================================================
-   CHALLENGE #1: BMI Calculator
+   CHALLENGE #2: BMI Calculator
    ------------------------------------------------------------
    Formula: BMI = mass / (height * height)
    Description: Compare Mark's and John's BMI values.
