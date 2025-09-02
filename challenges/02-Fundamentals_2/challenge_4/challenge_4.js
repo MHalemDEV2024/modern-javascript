@@ -36,8 +36,8 @@ const calcTip = function (bill) {
 */
 for (let i = 0; i < bills.length; i++) {
   const tip = calcTip(bills[i]); // Calculate tip
-  tips.push(tip);                // Add tip to tips array
-  totals.push(bills[i] + tip);   // Add total (bill + tip) to totals array
+  tips.push(tip); // Add tip to tips array
+  totals.push(bills[i] + tip); // Add total (bill + tip) to totals array
 }
 
 // Output bills, tips, and totals
