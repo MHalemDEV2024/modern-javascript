@@ -79,6 +79,48 @@ const calcTempAmplitudeNew = function (t1, t2) {
   return calcTempAmplitude(mergedTemps);
 };
 
-// Test Problem 2
+// ============================================================
+// Debugging with the Console and Breakpoints in JavaScript
+// ------------------------------------------------------------
+// This example demonstrates:
+//   1) Using console methods to inspect variables.
+//   2) Leveraging console.table for structured data.
+//   3) Identifying, finding, and fixing bugs step by step.
+// ============================================================
+
+// Test Problem 2 (Amplitude from two arrays)
 const amplitudeNew = calcTempAmplitudeNew([3, 5, 1], [9, 0, 5]);
 console.log('Amplitude (two arrays):', amplitudeNew);
+
+/**
+ * Prompt the user for a Celsius temperature and convert it to Kelvin.
+ * Demonstrates how to debug with console methods.
+ *
+ * @returns {number} Temperature in Kelvin
+ */
+const measureKelvin = function () {
+  const measurement = {
+    type: 'temperature',
+    unit: 'celsius',
+
+    // C) Fixed: Convert input string to a number
+    value: Number(prompt('Degrees Celsius:')),
+  };
+
+  // B) Find issues using different console methods
+  console.table(measurement); // Nicely formatted object output
+
+  // Additional debugging options (uncomment as needed):
+  // console.log(measurement.value);   // Standard log
+  // console.warn(measurement.value);  // Warning
+  // console.error(measurement.value); // Error
+  // console.info(measurement.value);  // Info message
+
+  // Convert Celsius to Kelvin
+  const kelvin = measurement.value + 273;
+  return kelvin;
+};
+
+// A) Identify the problem
+// Run function
+console.log('Temperature in Kelvin:', measureKelvin());
