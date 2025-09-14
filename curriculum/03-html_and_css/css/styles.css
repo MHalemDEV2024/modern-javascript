@@ -1,0 +1,217 @@
+/* ============================================================
+   CSS SELECTORS
+===============================================================*/
+
+/* Universal selector */
+* {
+  margin: 0;       /* Removes default margin */
+  padding: 0;      /* Removes default padding */
+  box-sizing: border-box; /* Makes width/height include padding and border */
+}
+
+/* Type selector (selects all <p> elements) */
+p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Class selector */
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* ID selector */
+#header {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+}
+
+/* Grouping selectors */
+h1, h2, h3 {
+  font-family: 'Arial', sans-serif;
+}
+
+/* Descendant selector */
+nav ul li {
+  list-style: none;
+}
+
+/* Child selector */
+div > p {
+  color: red;
+}
+
+/* Adjacent sibling */
+h1 + p {
+  margin-top: 0;
+}
+
+/* General sibling */
+h1 ~ p {
+  color: blue;
+}
+
+/* Attribute selectors */
+input[type="text"] {
+  border: 1px solid #ccc;
+}
+
+/* Pseudo-classes */
+a:hover {
+  color: orange;
+}
+
+input:focus {
+  outline: 2px solid #00f;
+}
+
+li:first-child {
+  font-weight: bold;
+}
+
+li:last-child {
+  font-style: italic;
+}
+
+/* Pseudo-elements */
+p::first-letter {
+  font-size: 2em;
+  color: red;
+}
+
+p::after {
+  content: " ★";
+}
+
+/* ============================================================
+   CSS PROPERTIES
+===============================================================*/
+
+/* Text */
+h1 {
+  color: #222;           /* Text color */
+  font-size: 36px;       /* Font size */
+  font-weight: bold;     /* Font weight */
+  text-align: center;    /* Alignment */
+  text-transform: uppercase; /* Transform */
+  letter-spacing: 2px;   /* Spacing between letters */
+  line-height: 1.4;      /* Line height */
+  text-decoration: underline; /* underline, overline, line-through */
+}
+
+/* Backgrounds */
+body {
+  background-color: #f9f9f9; /* Background color */
+  background-image: url('bg.jpg'); /* Background image */
+  background-size: cover;    /* cover, contain */
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Box model */
+div.box {
+  width: 200px;
+  height: 150px;
+  padding: 20px;           /* Inner spacing */
+  margin: 10px;             /* Outer spacing */
+  border: 2px solid #000;
+  border-radius: 10px;      /* Rounded corners */
+}
+
+/* Flexbox */
+.flex-container {
+  display: flex;
+  flex-direction: row;       /* row, column */
+  justify-content: space-between; /* align horizontally */
+  align-items: center;       /* align vertically */
+  flex-wrap: wrap;           /* wrap items */
+}
+
+/* Grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 10px; /* spacing between grid items */
+}
+
+/* Positioning */
+.relative {
+  position: relative;
+  top: 10px;
+  left: 20px;
+}
+
+.absolute {
+  position: absolute;
+  top: 50px;
+  right: 0;
+}
+
+.fixed {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
+/* Overflow */
+.scrollable {
+  overflow: auto; /* auto, hidden, scroll */
+}
+
+/* Display & visibility */
+.hidden {
+  display: none;
+  visibility: hidden; /* element hidden but occupies space */
+}
+
+/* Transitions & animation */
+button {
+  transition: all 0.3s ease-in-out; /* smooth changes */
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+/* Keyframe animation */
+@keyframes slide {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(50px); }
+  100% { transform: translateX(0); }
+}
+
+.animated {
+  animation: slide 2s infinite;
+}
+
+/* Media Queries (Responsive Design) */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+}
+
+/* Variables (Custom properties) */
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+}
+
+.button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+}

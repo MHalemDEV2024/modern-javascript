@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<!-- Document type declaration: tells browser to use standards mode. -->
+<html lang="en">
+  <!-- `lang` for accessibility and SEO. -->
+  <head>
+    <!-- Basic metadata -->
+    <meta charset="utf-8" />
+    <!-- Character encoding -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Legacy IE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Responsive -->
+    <meta
+      name="description"
+      content="Annotated HTML example showing common elements and attributes."
+    />
+    <meta name="author" content="Your Name" />
+    <title>Annotated HTML Syntax Example</title>
+
+    <!-- Base URL for relative links (optional) -->
+    <base href="/" />
+
+    <!-- Favicons (example) -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- External CSS -->
+    <style>
+      /* Small internal CSS for demo clarity */
+      :root {
+        --accent: #0b5cff;
+        --muted: #666;
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto,
+          'Helvetica Neue', Arial;
+      }
+      body {
+        margin: 0;
+        padding: 1rem;
+        line-height: 1.5;
+        color: #111;
+      }
+      header,
+      nav,
+      main,
+      footer,
+      section,
+      article,
+      aside {
+        display: block;
+      }
+      header {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.75rem;
+        margin-bottom: 1rem;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: 0.75rem;
+      }
+      code,
+      pre {
+        background: #f5f5f5;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono',
+          monospace;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 1rem;
+        align-items: start;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      td,
+      th {
+        border: 1px solid #ddd;
+        padding: 0.5rem;
+        text-align: left;
+      }
+      footer {
+        margin-top: 1.25rem;
+        border-top: 1px solid #eee;
+        padding-top: 0.75rem;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+    </style>
+
+    <!-- Preload an important resource -->
+    <link rel="preload" href="main.js" as="script" />
+
+    <!-- Structured data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Annotated HTML Example",
+        "url": "https://example.com"
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Skip link for keyboard users -->
+    <a
+      class="skip-link"
+      href="#main"
+      style="position: absolute; left: -9999px; top: auto"
+      >Skip to main content</a
+    >
+
+    <!-- Header with logo and nav -->
+    <header role="banner">
+      <!-- Logo (use <img> or inline SVG for crisp logos) -->
+      <div style="display: flex; align-items: center; gap: 0.75rem">
+        <!-- Decorative SVG logo: include width/height and role/presentation for assistive tech -->
+        <svg
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <circle cx="12" cy="12" r="10" fill="#0b5cff"></circle>
+          <text x="12" y="16" text-anchor="middle" font-size="10" fill="#fff">
+            Hx
+          </text>
+        </svg>
+
+        <div>
+          <h1 style="margin: 0; font-size: 1.1rem">Annotated HTML Example</h1>
+          <p class="muted" style="margin: 0">
+            A compact guide to common HTML syntax
+          </p>
+        </div>
+      </div>
+
+      <!-- Navigation with ARIA landmark role -->
+      <nav
+        role="navigation"
+        aria-label="Primary navigation"
+        style="margin-top: 0.75rem"
+      >
+        <ul>
+          <li>
+            <a href="#semantic" title="Go to semantic elements">Semantic</a>
+          </li>
+          <li><a href="#forms" title="Go to forms">Forms</a></li>
+          <li><a href="#media" title="Go to media">Media</a></li>
+          <li><a href="#extras" title="Go to extras">Extras</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" role="main">
+      <!-- Two-column grid: primary content + sidebar -->
+      <div class="grid">
+        <article>
+          <!-- Semantic section heading -->
+          <section id="semantic" aria-labelledby="semantic-heading">
+            <h2 id="semantic-heading">Semantic & structural elements</h2>
+            <!-- paragraphs -->
+            <p>
+              Use semantic tags to structure content:
+              <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>,
+              <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>,
+              <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, and
+              <code>&lt;footer&gt;</code>.
+            </p>
+
+            <!-- Headings levels -->
+            <h3>Headings</h3>
+            <p>
+              Use <code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code> in
+              hierarchical order (one &lt;h1&gt; per page is typical).
+            </p>
+
+            <!-- Lists -->
+            <h3>Lists</h3>
+            <p>Unordered, ordered, and description lists:</p>
+            <ul>
+              <li>Unordered list item</li>
+              <li>
+                Another item with nested list:
+                <ol>
+                  <li>Ordered nested item 1</li>
+                  <li>Ordered nested item 2</li>
+                </ol>
+              </li>
+              <li>Final item</li>
+            </ul>
+
+            <dl>
+              <dt>HTML</dt>
+              <dd>A markup language for documents.</dd>
+              <dt>CSS</dt>
+              <dd>Styling language for the web.</dd>
+            </dl>
+
+            <!-- Links and anchors -->
+            <h3>Links & anchors</h3>
+            <p>
+              <a
+                href="https://developer.mozilla.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >External link</a
+              >
+              and a relative link <a href="/about">About</a>.
+            </p>
+
+            <!-- Images and responsive picture element -->
+            <h3>Images</h3>
+            <p>
+              <figure>
+                <!-- Use <picture> for responsive sources (webp/avif fallback) -->
+                <picture>
+                  <source srcset="image.avif" type="image/avif" />
+                  <source srcset="image.webp" type="image/webp" />
+                  <img
+                    src="image.jpg"
+                    alt="Descriptive alt text"
+                    width="400"
+                    height="300"
+                  />
+                </picture>
+                <figcaption class="muted">
+                  Figure caption: descriptive text for the image.
+                </figcaption>
+              </figure>
+            </p>
+
+            <!-- Table -->
+            <h3>Tables</h3>
+            <p>Use tables for tabular data (not for layout).</p>
+            <table>
+              <caption>
+                Sample data table
+              </caption>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Gadget</td>
+                  <td>$19.99</td>
+                  <td>42</td>
+                </tr>
+                <tr>
+                  <td>Widget</td>
+                  <td>$9.99</td>
+                  <td>128</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="2">Total</td>
+                  <td>170</td>
+                </tr>
+              </tfoot>
+            </table>
+
+            <!-- Details/summary -->
+            <h3>Disclosure widget</h3>
+            <details>
+              <summary>Click to expand</summary>
+              <p>This content is hidden until the user expands the element.</p>
+            </details>
+          </section>
+
+          <!-- Forms with most input types -->
+          <section
+            id="forms"
+            aria-labelledby="forms-heading"
+            style="margin-top: 1.25rem"
+          >
+            <h2 id="forms-heading">Forms & inputs</h2>
+            <!-- Form: method & action are important -->
+            <form
+              action="/submit"
+              method="post"
+              enctype="multipart/form-data"
+              aria-labelledby="forms-heading"
+              novalidate
+            >
+              <!-- Fieldset and legend for grouping -->
+              <fieldset>
+                <legend>Personal information</legend>
+
+                <!-- Text inputs -->
+                <label for="name"
+                  >Full name
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Jane Doe"
+                    required
+                  />
+                </label>
+                <br />
+
+                <label for="email"
+                  >Email
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </label>
+                <br />
+
+                <label for="password"
+                  >Password
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    minlength="8"
+                  />
+                </label>
+                <br />
+
+                <label for="age"
+                  >Age
+                  <input id="age" name="age" type="number" min="0" max="150" />
+                </label>
+                <br />
+
+                <label for="birthday"
+                  >Birthday
+                  <input id="birthday" name="birthday" type="date" />
+                </label>
+                <br />
+
+                <label for="appt"
+                  >Preferred time
+                  <input id="appt" name="appt" type="time" />
+                </label>
+                <br />
+
+                <label for="color"
+                  >Favorite color
+                  <input id="color" name="color" type="color" value="#0b5cff" />
+                </label>
+                <br />
+
+                <!-- Range, checkbox, radio -->
+                <label for="satisfaction"
+                  >Satisfaction (0-10)
+                  <input
+                    id="satisfaction"
+                    name="satisfaction"
+                    type="range"
+                    min="0"
+                    max="10"
+                  />
+                </label>
+                <br />
+
+                <fieldset>
+                  <legend>Newsletter</legend>
+                  <label
+                    ><input type="checkbox" name="subscribe" value="yes" />
+                    Subscribe to updates</label
+                  >
+                </fieldset>
+
+                <fieldset>
+                  <legend>Choose plan</legend>
+                  <label
+                    ><input type="radio" name="plan" value="basic" checked />
+                    Basic</label
+                  >
+                  <label
+                    ><input type="radio" name="plan" value="pro" /> Pro</label
+                  >
+                  <label
+                    ><input type="radio" name="plan" value="enterprise" />
+                    Enterprise</label
+                  >
+                </fieldset>
+
+                <!-- File upload -->
+                <label for="avatar"
+                  >Upload avatar
+                  <input
+                    id="avatar"
+                    name="avatar"
+                    type="file"
+                    accept="image/*"
+                  />
+                </label>
+                <br />
+
+                <!-- Textarea -->
+                <label for="bio"
+                  >Bio
+                  <textarea
+                    id="bio"
+                    name="bio"
+                    rows="4"
+                    cols="50"
+                    placeholder="Tell us about yourself"
+                  ></textarea>
+                </label>
+                <br />
+
+                <!-- Select and datalist -->
+                <label for="country"
+                  >Country
+                  <select id="country" name="country" required>
+                    <option value="">Select...</option>
+                    <option value="eg">Egypt</option>
+                    <option value="us">United States</option>
+                  </select>
+                </label>
+                <br />
+
+                <label for="city"
+                  >City (type to filter)
+                  <input list="cities" id="city" name="city" />
+                  <datalist id="cities">
+                    <option value="Cairo"></option>
+                    <option value="Alexandria"></option>
+                    <option value="Giza"></option>
+                  </datalist>
+                </label>
+                <br />
+
+                <!-- Hidden input, button types -->
+                <input type="hidden" name="csrf-token" value="RANDOM_TOKEN" />
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+                <button type="button" onclick="alert('Clicked!')">
+                  Button
+                </button>
+              </fieldset>
+            </form>
+          </section>
+
+          <!-- Media -->
+          <section
+            id="media"
+            aria-labelledby="media-heading"
+            style="margin-top: 1.25rem"
+          >
+            <h2 id="media-heading">Media (audio, video, iframe)</h2>
+
+            <!-- Audio -->
+            <h3>Audio</h3>
+            <audio controls>
+              <source src="audio.ogg" type="audio/ogg" />
+              <source src="audio.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+
+            <!-- Video -->
+            <h3>Video</h3>
+            <video controls width="480" poster="poster.jpg">
+              <source src="video.webm" type="video/webm" />
+              <source src="video.mp4" type="video/mp4" />
+              <!-- Captions/subtitles -->
+              <track
+                src="captions_en.vtt"
+                kind="subtitles"
+                srclang="en"
+                label="English"
+                default
+              />
+              Fallback message: upgrade your browser to view this video.
+            </video>
+
+            <!-- Iframe: used for embedding other pages (beware of security & sandboxing) -->
+            <h3>Iframe</h3>
+            <iframe
+              title="Example site"
+              src="https://example.com"
+              width="600"
+              height="200"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+              sandbox="allow-scripts allow-same-origin"
+            >
+              <!-- Fallback content for browsers that don't support iframe -->
+              <p><a href="https://example.com">Open example.com</a></p>
+            </iframe>
+          </section>
+
+          <!-- Extras: SVG, canvas, template, script -->
+          <section
+            id="extras"
+            aria-labelledby="extras-heading"
+            style="margin-top: 1.25rem"
+          >
+            <h2 id="extras-heading">
+              Extras: SVG, Canvas, Template, Microdata, Accessibility
+            </h2>
+
+            <!-- Inline SVG (scalable vector) -->
+            <h3>SVG</h3>
+            <svg
+              viewBox="0 0 100 40"
+              width="300"
+              height="120"
+              role="img"
+              aria-label="Simple bar"
+            >
+              <rect x="0" y="10" width="30" height="30"></rect>
+              <rect x="35" y="0" width="30" height="40"></rect>
+              <rect x="70" y="15" width="30" height="25"></rect>
+            </svg>
+
+            <!-- Canvas: bitmap drawing via JS -->
+            <h3>Canvas</h3>
+            <canvas
+              id="myCanvas"
+              width="300"
+              height="100"
+              style="border: 1px solid #ccc"
+            >
+              <!-- Fallback for older browsers -->
+              Your browser does not support the canvas element.
+            </canvas>
+
+            <!-- Template: inert DOM for cloning via JS -->
+            <h3>Template</h3>
+            <template id="card-template">
+              <article class="card">
+                <h4></h4>
+                <p class="muted"></p>
+              </article>
+            </template>
+
+            <!-- Dialog element (modal) -->
+            <h3>Dialog</h3>
+            <dialog id="dlg">
+              This is a dialog. <button id="closeDlg">Close</button>
+            </dialog>
+
+            <!-- Microdata example -->
+            <div itemscope itemtype="https://schema.org/Person">
+              <span itemprop="name">Jane Doe</span> —
+              <a itemprop="sameAs" href="https://twitter.com/janedoe"
+                >Twitter</a
+              >
+            </div>
+
+            <!-- Accessibility: aria attributes and roles -->
+            <h3>Accessibility notes</h3>
+            <p class="muted">
+              Use <code>role</code>, <code>aria-*</code>, meaningful labels, and
+              proper heading order. Avoid using <code>tabindex</code> unless
+              necessary.
+            </p>
+          </section>
+        </article>
+
+        <!-- Sidebar / aside -->
+        <aside aria-labelledby="sidebar-heading">
+          <h3 id="sidebar-heading">Quick reference</h3>
+          <ul>
+            <li>
+              <strong>Meta</strong>: <code>&lt;meta charset&gt;</code>, viewport
+            </li>
+            <li>
+              <strong>Favicons</strong>: <code>&lt;link rel="icon"&gt;</code>
+            </li>
+            <li>
+              <strong>Forms</strong>: <code>required</code>, type validation,
+              <code>novalidate</code>
+            </li>
+            <li>
+              <strong>Security</strong>:
+              <code>rel="noopener noreferrer"</code> on external links
+            </li>
+            <li>
+              <strong>Performance</strong>: <code>preload</code>,
+              <code>loading="lazy"</code>
+            </li>
+          </ul>
+
+          <h4>Common attributes</h4>
+          <p class="muted">
+            <code>id</code>, <code>class</code>, <code>data-*</code>,
+            <code>hidden</code>, <code>title</code>, <code>aria-* </code>.
+          </p>
+
+          <h4>Data attributes</h4>
+          <p class="muted">
+            Custom data on elements: <code>data-user-id="123"</code>
+          </p>
+
+          <h4>Example: HTML comment</h4>
+          <pre>&lt;!-- This is a comment --&gt;</pre>
+        </aside>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+      <p>
+        &copy; <time datetime="2025-09-03">2025</time> Annotated HTML Example.
+        <span class="muted">Last updated: Sep 3, 2025</span>
+      </p>
+
+      <!-- NoScript: content for users without JS -->
+      <noscript>
+        <p class="muted">This site works best with JavaScript enabled.</p>
+      </noscript>
+    </footer>
+
+    <!-- Scripts: place scripts at the end for performance -->
+    <script>
+      // Basic JS to illustrate interacting with template, canvas, dialog
+      // 1) Template usage
+      (function () {
+        const tmpl = document.getElementById('card-template');
+        if (tmpl && 'content' in tmpl) {
+          const clone = tmpl.content.cloneNode(true);
+          clone.querySelector('h4').textContent = 'Generated card';
+          clone.querySelector('p').textContent =
+            'This card was created from a <template> element.';
+          document.querySelector('main article')?.appendChild(clone);
+        }
+      })();
+
+      // 2) Canvas drawing
+      (function () {
+        const c = document.getElementById('myCanvas');
+        if (c && c.getContext) {
+          const ctx = c.getContext('2d');
+          ctx.fillStyle = '#0b5cff';
+          ctx.fillRect(10, 10, 80, 60);
+          ctx.fillStyle = '#333';
+          ctx.font = '16px sans-serif';
+          ctx.fillText('Canvas demo', 100, 40);
+        }
+      })();
+
+      // 3) Dialog polyfill-ish basic open/close
+      (function () {
+        const dlg = document.getElementById('dlg');
+        if (dlg && typeof dlg.showModal === 'function') {
+          // show a dialog after 1.5s just as demo (in real apps avoid surprise modals)
+          setTimeout(() => dlg.showModal(), 1500);
+          document
+            .getElementById('closeDlg')
+            ?.addEventListener('click', () => dlg.close());
+        }
+      })();
+    </script>
+
+    <!-- Deferred external JS -->
+    <script src="main.js" defer></script>
+  </body>
+</html>
