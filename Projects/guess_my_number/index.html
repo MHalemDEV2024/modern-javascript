@@ -2,12 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Guess My Number! (Multi-Players)</title>
+
+    <!-- Google Font -->
     <link
       href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -15,17 +19,19 @@
       <h1>Guess My Number!</h1>
       <p class="between">(Between 1 and 20)</p>
 
-      <!-- Play Again (same players) & Restart (reload page) -->
+      <!-- Control Buttons -->
       <div class="header-buttons">
-        <button class="btn play-again">Play Again</button>
-        <button class="btn restart">Restart</button>
+        <button type="button" class="btn play-again">Play Again</button>
+        <button type="button" class="btn restart">Restart</button>
       </div>
 
-      <div class="number">?</div>
+      <div class="number" aria-live="polite">?</div>
     </header>
 
     <main>
-      <!-- SETUP (choose players + names) -->
+      <!-- ================================
+           Game Setup
+      ================================== -->
       <div class="container" id="game-setup">
         <h2>Setup Game</h2>
 
@@ -38,6 +44,7 @@
           value="2"
           style="margin-bottom: 1rem"
         />
+        <p>Enter a number between 1 and 6</p>
         <button id="generatePlayers" class="btn">Generate Player Inputs</button>
 
         <div id="player-names"></div>
@@ -45,13 +52,18 @@
         <button id="startBtn" class="btn hidden">Start Game</button>
       </div>
 
-      <!-- GAME PLAY -->
-      <div id="game-play" class="hidden">
-        <h2 class="turn-indicator">Waiting to start...</h2>
+      <!-- ================================
+           Game Play
+      ================================== -->
+      <section id="game-play" class="hidden" aria-labelledby="gameplay-heading">
+        <h2 id="gameplay-heading" class="turn-indicator">
+          Waiting to start...
+        </h2>
         <div class="players" id="players-area"></div>
-      </div>
+      </section>
     </main>
 
-    <script src="script.js"></script>
+    <!-- Script -->
+    <script src="script.js" defer></script>
   </body>
 </html>

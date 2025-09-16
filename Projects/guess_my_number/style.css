@@ -1,38 +1,61 @@
+/* ================================
+   Global Reset & Base
+================================ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+:root {
+  --primary-bg: #222;
+  --primary-text: #eee;
+  --secondary-text: #333;
+  --accent: yellow;
+  --card-bg: #333;
+  --border: #eee;
+  --border-light: #ccc;
+
+  --font-main: 'Press Start 2P', sans-serif;
+
+  --fs-base: 62.5%;
+  --fs-lg: 2.4rem;
+  --fs-md: 1.6rem;
+  --fs-sm: 1.4rem;
+}
+
 html {
-  font-size: 62.5%;
+  font-size: var(--fs-base);
 }
 
 body {
-  font-family: 'Press Start 2P', sans-serif;
-  background: #222;
-  color: #eee;
+  font-family: var(--font-main);
+  background: var(--primary-bg);
+  color: var(--primary-text);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+/* ================================
+   Header
+================================ */
 header {
   text-align: center;
   padding: 2rem;
-  border-bottom: 5px solid #eee;
+  border-bottom: 5px solid var(--border);
   position: relative;
   height: 35vh;
 }
 
 h1 {
-  font-size: 2.4rem;
+  font-size: var(--fs-lg);
   margin-bottom: 1rem;
 }
 
 .number {
-  background: #eee;
-  color: #333;
+  background: var(--primary-text);
+  color: var(--secondary-text);
   font-size: 4rem;
   width: 12rem;
   padding: 1.5rem 0;
@@ -45,10 +68,14 @@ h1 {
 }
 
 .between {
-  font-size: 1.4rem;
+  font-size: var(--fs-sm);
 }
 
-main {
+/* ================================
+   Main Layout
+================================ */
+main,
+.container {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -58,19 +85,23 @@ main {
 }
 
 label {
-  font-size: large;
+  font-size: var(--fs-md);
   margin: 2rem;
 }
+
+/* ================================
+   Player Section
+================================ */
 .players {
   display: flex;
-  gap: 2rem;
   flex-wrap: wrap;
+  gap: 2rem;
   justify-content: center;
   width: 100%;
 }
 
 .player {
-  background: #333;
+  background: var(--card-bg);
   padding: 2rem;
   border-radius: 1rem;
   width: 300px;
@@ -79,10 +110,11 @@ label {
   flex-direction: column;
   align-items: center;
   border: 3px solid transparent;
+  transition: border-color 0.3s;
 }
 
 .player.active {
-  border: 3px solid yellow;
+  border-color: var(--accent);
 }
 
 .player h2 {
@@ -90,106 +122,138 @@ label {
   font-size: 2rem;
 }
 
+/* ================================
+   Inputs & Buttons
+================================ */
+input,
 .guess {
   background: none;
-  border: 3px solid #eee;
+  border: 3px solid var(--border);
   font-size: 2rem;
-  color: #eee;
+  color: var(--primary-text);
   width: 100%;
   padding: 1rem;
   text-align: center;
   margin-bottom: 1rem;
+  border-radius: 6px;
+}
+
+#game-setup input {
+  border: 1px solid var(--border-light);
+  font-size: var(--fs-sm);
+  width: 60%;
+  max-width: 300px;
 }
 
 .btn {
   border: none;
-  background: #eee;
-  color: #222;
+  background: var(--primary-text);
+  color: var(--primary-bg);
   padding: 1rem 2rem;
-  font-size: 1.6rem;
+  font-size: var(--fs-md);
   cursor: pointer;
   font-family: inherit;
   border-radius: 0.5rem;
   margin-bottom: 1rem;
+  transition: background 0.2s;
 }
 
 .btn:hover {
   background: #ccc;
 }
 
+/* Special Buttons (header) */
+.play-again,
+.restart {
+  position: absolute;
+  top: 12rem;
+}
+
+.play-again {
+  right: 2rem;
+}
+
+.restart {
+  left: 2rem;
+}
+
+/* ================================
+   Game Setup Section
+================================ */
+#game-setup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  gap: 1.5rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+#player-names {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+#generatePlayers,
+#startBtn {
+  width: 200px;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  font-size: var(--fs-sm);
+}
+
+/* ================================
+   Messages & Score
+================================ */
 .message {
-  font-size: 1.6rem;
+  font-size: var(--fs-md);
   margin-bottom: 1rem;
   text-align: center;
 }
 
 .scoreboard {
-  font-size: 1.4rem;
+  font-size: var(--fs-sm);
   text-align: center;
 }
 
 .turn-indicator {
   text-align: center;
-  font-size: 1.6rem;
+  font-size: var(--fs-md);
   margin: 1.5rem;
 }
 
-.container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Setup inputs only */
-#game-setup input {
-  margin: 10px;
-  padding: 10px;
-  width: 80%;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1.4rem;
-}
-
-#player-names {
-  flex: 2;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
+/* ================================
+   Helpers
+================================ */
 .hidden {
   display: none;
 }
 
-/* Buttons on header */
-.play-again {
-  position: absolute;
-  top: 12rem;
-  right: 2rem;
-}
-.restart {
-  position: absolute;
-  top: 12rem;
-  left: 2rem;
-}
-
-/* Responsive */
+/* ================================
+   Responsive
+================================ */
 @media (max-width: 768px) {
   h1 {
     font-size: 2rem;
   }
+
   .players {
     flex-direction: column;
     align-items: center;
   }
+
   .player {
     width: 90%;
   }
 
-  /* Move buttons down for smaller screens */
   .play-again,
   .restart {
     position: static;

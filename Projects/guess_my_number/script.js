@@ -1,6 +1,21 @@
+/* Multiplayer Guess the Number Game
+   --------------------------------------------
+   Description:
+   A browser-based number guessing game for 1 or more players. 
+   - Players try to guess a secret number between 1 and 20.
+   - Supports single-player and multiplayer turn-based modes.
+   - Scores increase when a player wins.
+   - Includes "Play Again" and "Restart" options.
+
+   Author: Mohamed Saeed
+   Date: 2025-09-16
+*/
+
 'use strict';
 
-// DOM references
+// ================================
+// DOM References
+// ================================
 const setupDiv = document.getElementById('game-setup');
 const numPlayersInput = document.getElementById('numPlayers');
 const playerNamesDiv = document.getElementById('player-names');
@@ -15,150 +30,174 @@ const playAgainBtn = document.querySelector('.play-again');
 const restartBtn = document.querySelector('.restart');
 const numberEl = document.querySelector('.number');
 
+// ================================
+// Game State
+// ================================
 let secretNumber;
 let players = [];
 let currentPlayerIndex = 0;
-let isSinglePlayer = false; // ✅ نحدد لو اللعبة لاعب واحد
+let isSinglePlayer = false;
 
-// ---------- Helpers ----------
-function genSecret() {
-  return Math.trunc(Math.random() * 20) + 1;
-}
+// ================================
+// Helpers
+// ================================
 
-// Render player sections dynamically
-function renderPlayers() {
-  playersArea.innerHTML = '';
+// Generate random number between 1 and 20
+const genSecret = () => Math.trunc(Math.random() * 20) + 1;
 
-  players.forEach((p, i) => {
-    const section = document.createElement('section');
-    section.classList.add('player');
-    section.id = `player-${i}`;
-
-    section.innerHTML = `
-      <h2>${p.name}</h2>
-      <input type="number" class="guess guess${i}" placeholder="1 - 20" />
-      <button class="btn check" data-index="${i}">Check!</button>
-      <p class="message message${i}">Waiting...</p>
-      <div class="scoreboard">
-        💯 Score: <span class="score score${i}">${p.score}</span><br />
-        🏆 Highscore: <span class="highscore highscore${i}">${p.highscore}</span>
-      </div>
-    `;
-    playersArea.appendChild(section);
-  });
-
-  // Add listeners to each Check button
-  document.querySelectorAll('.check').forEach(btn => {
-    btn.addEventListener('click', handleGuess);
-  });
-}
-
-// Update the UI for whose turn it is
+// Update turn indicator and highlight active player
 function updateTurn() {
-  document.querySelectorAll('.player').forEach((p, i) => {
-    p.classList.toggle('active', i === currentPlayerIndex);
-  });
+  document
+    .querySelectorAll('.player')
+    .forEach((p, i) => p.classList.toggle('active', i === currentPlayerIndex));
 
-  if (isSinglePlayer) {
-    turnIndicator.textContent = `🎯 ${players[0].name}, it's your turn`;
-  } else {
-    turnIndicator.textContent = `🎯 It's ${players[currentPlayerIndex].name}'s turn`;
-  }
+  const playerName = players[currentPlayerIndex].name;
+  turnIndicator.textContent = isSinglePlayer
+    ? `🎯 ${playerName}, it's your turn`
+    : `🎯 It's ${playerName}'s turn`;
 }
 
-// Initialize / reset game
+// Render all players dynamically
+function renderPlayers() {
+  playersArea.innerHTML = players
+    .map(
+      (p, i) => `
+      <section class="player" id="player-${i}">
+        <h2>${p.name}</h2>
+        <input type="number" class="guess guess${i}" placeholder="1 - 20" />
+        <button class="btn check" data-index="${i}">Check!</button>
+        <p class="message message${i}">Waiting...</p>
+        <div class="scoreboard">
+          💯 Score: <span class="score score${i}">${p.score}</span><br />
+          🏆 Highscore: <span class="highscore highscore${i}">${p.highscore}</span>
+        </div>
+      </section>`
+    )
+    .join('');
+
+  // Attach event listeners for each "Check!" button
+  document
+    .querySelectorAll('.check')
+    .forEach(btn => btn.addEventListener('click', handleGuess));
+}
+
+// Reset and start a new game round
 function initGame() {
   secretNumber = genSecret();
   numberEl.textContent = '?';
   document.body.style.backgroundColor = '#222';
-
   renderPlayers();
   updateTurn();
 }
 
-// Handle player guesses
+// ================================
+// Gameplay Logic
+// ================================
 function handleGuess(e) {
-  const idx = Number(e.target.dataset.index);
-  if (!isSinglePlayer && idx !== currentPlayerIndex) return; // ✅ بس اللاعب اللي دوره يلعب
+  const idx = +e.target.dataset.index;
+  if (!isSinglePlayer && idx !== currentPlayerIndex) return; // Restrict out-of-turn moves
 
   const guessInput = document.querySelector(`.guess${idx}`);
-  const guess = Number(guessInput.value);
+  const guess = +guessInput.value;
 
+  const messageEl = document.querySelector(`.message${idx}`);
   if (!guess) {
-    document.querySelector(`.message${idx}`).textContent = '⛔ Enter a number!';
+    messageEl.textContent = '⛔ Enter a number!';
     return;
   }
 
   if (guess === secretNumber) {
-    // إعلان الفوز في المكان المخصص تحت الهيدر
-    // ✅ رسالة الفوز بالاسم
-
-    // ✨ كمان نوقف رسالة الدور ونخليها "Game Over"
+    // Winning state
     turnIndicator.textContent = `🏆 ${players[idx].name} is the Winner!`;
-
+    numberEl.textContent = secretNumber;
     document.body.style.backgroundColor = '#60b347';
 
-    numberEl.textContent = secretNumber;
-    // تعطيل الإدخال
-    document.querySelectorAll('.guess').forEach(inp => (inp.disabled = true));
-    document.querySelectorAll('.check').forEach(btn => (btn.disabled = true));
+    // Disable inputs and buttons
+    document
+      .querySelectorAll('.guess, .check')
+      .forEach(el => (el.disabled = true));
 
-    // زيادة Score للفائز
+    // Update score
     players[idx].score++;
     document.querySelector(`.score${idx}`).textContent = players[idx].score;
   } else {
-    document.querySelector(`.message${idx}`).textContent =
+    // Hint message
+    messageEl.textContent =
       guess > secretNumber ? '📈 Too High!' : '📉 Too Low!';
 
-    // تبديل الدور لو أكتر من لاعب
+    // Switch turn in multiplayer
     if (!isSinglePlayer) {
       currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
       updateTurn();
     }
   }
+
   guessInput.value = '';
   guessInput.focus();
 }
 
-// ---------- Setup Flow ----------
+// ================================
+// Setup Flow
+// ================================
 generateBtn.addEventListener('click', () => {
   const num = +numPlayersInput.value;
-  playerNamesDiv.innerHTML = '';
 
-  for (let i = 1; i <= num; i++) {
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.id = `player${i}-name`;
-    input.placeholder = `Enter Player ${i} name`;
-    playerNamesDiv.appendChild(input);
-  }
+  // Generate player name input fields
+  playerNamesDiv.innerHTML = Array.from({ length: num }, (_, i) => {
+    return `<input type="text" id="player${
+      i + 1
+    }-name" placeholder="Enter Player ${i + 1} name" />`;
+  }).join('');
 
+  // Hide setup texts + number input + button
+  document.querySelector('#game-setup h2').classList.add('hidden');
+  document.querySelector('label[for="numPlayers"]').classList.add('hidden');
+  numPlayersInput.classList.add('hidden');
+  generateBtn.classList.add('hidden');
+
+  // If you have "Enter a number between 1 and 6" as <p>, hide it too
+  const helper = document.querySelector('#game-setup p');
+  if (helper) helper.classList.add('hidden');
+
+  // Show Start Game button
   startBtn.classList.remove('hidden');
-});
 
+  // Focus on first name field
+  document.getElementById('player1-name').focus();
+});
+// ================================
+// Start Game (after setup)
+// ================================
 startBtn.addEventListener('click', () => {
   const num = +numPlayersInput.value;
-  players = [];
+  isSinglePlayer = num === 1;
 
-  isSinglePlayer = num === 1; // ✅ هنا نحدد إذا لاعب واحد
+  // Build players array from entered names (or fallback to Player X)
+  players = Array.from({ length: num }, (_, i) => ({
+    name:
+      document.getElementById(`player${i + 1}-name`).value.trim() ||
+      `Player ${i + 1}`,
+    score: 0,
+    highscore: 0,
+  }));
 
-  for (let i = 1; i <= num; i++) {
-    const name =
-      document.getElementById(`player${i}-name`).value || `Player ${i}`;
-    players.push({ name, score: 0, highscore: 0 });
-  }
+  // Remove setup section completely (clean UI, no scroll issues)
+  setupDiv.remove();
 
-  setupDiv.classList.add('hidden');
+  // Show game section and initialize
   gameDiv.classList.remove('hidden');
-
   initGame();
+
+  // Ensure page is scrolled to top for consistent UX
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Play Again (same players)
+// ================================
+// Control Buttons
+// ================================
 playAgainBtn.addEventListener('click', () => {
-  currentPlayerIndex = 0; // ✅ يرجع الدور لأول لاعب
+  currentPlayerIndex = 0; // Reset turn order
   initGame();
 });
 
-// Restart (new setup)
 restartBtn.addEventListener('click', () => window.location.reload());

@@ -6,8 +6,8 @@
    Compare Mark's and John's BMI values.
 */
 
-console.log("Welcome to the BMI Calculator");
-console.log("================================\n");
+console.log('Welcome to the BMI Calculator');
+console.log('================================\n');
 
 // ================================
 // Test Data 1
@@ -23,7 +23,7 @@ let BMIMark = massMark / (heightMark * heightMark);
 let BMIJohn = massJohn / (heightJohn * heightJohn);
 
 // Log results
-console.log("Test Data 1:");
+console.log('Test Data 1:');
 console.log(`Mark's BMI: ${BMIMark.toFixed(2)}`);
 console.log(`John's BMI: ${BMIJohn.toFixed(2)}`);
 
@@ -45,7 +45,7 @@ BMIMark = massMark / (heightMark * heightMark);
 BMIJohn = massJohn / (heightJohn * heightJohn);
 
 // Log results
-console.log("Test Data 2:");
+console.log('Test Data 2:');
 console.log(`Mark's BMI: ${BMIMark.toFixed(2)}`);
 console.log(`John's BMI: ${BMIJohn.toFixed(2)}`);
 
