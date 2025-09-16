@@ -1,0 +1,205 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Press Start 2P', sans-serif;
+  background: #222;
+  color: #eee;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  text-align: center;
+  padding: 2rem;
+  border-bottom: 5px solid #eee;
+  position: relative;
+  height: 35vh;
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+
+.number {
+  background: #eee;
+  color: #333;
+  font-size: 4rem;
+  width: 12rem;
+  padding: 1.5rem 0;
+  text-align: center;
+  position: absolute;
+  bottom: -3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 1rem;
+}
+
+.between {
+  font-size: 1.4rem;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem;
+}
+
+label {
+  font-size: large;
+  margin: 2rem;
+}
+.players {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.player {
+  background: #333;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 300px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid transparent;
+}
+
+.player.active {
+  border: 3px solid yellow;
+}
+
+.player h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.guess {
+  background: none;
+  border: 3px solid #eee;
+  font-size: 2rem;
+  color: #eee;
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  border: none;
+  background: #eee;
+  color: #222;
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.btn:hover {
+  background: #ccc;
+}
+
+.message {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.scoreboard {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.turn-indicator {
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 1.5rem;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Setup inputs only */
+#game-setup input {
+  margin: 10px;
+  padding: 10px;
+  width: 80%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1.4rem;
+}
+
+#player-names {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Buttons on header */
+.play-again {
+  position: absolute;
+  top: 12rem;
+  right: 2rem;
+}
+.restart {
+  position: absolute;
+  top: 12rem;
+  left: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .players {
+    flex-direction: column;
+    align-items: center;
+  }
+  .player {
+    width: 90%;
+  }
+
+  /* Move buttons down for smaller screens */
+  .play-again,
+  .restart {
+    position: static;
+    margin: 1rem;
+  }
+
+  .header-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+}
